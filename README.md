@@ -17,3 +17,7 @@ app_port: 8909
 [![License](https://img.shields.io/github/license/wh1isper/mini-leaderboard)](https://img.shields.io/github/license/wh1isper/mini-leaderboard)
 
 simple learder board with many projects
+
+Try it on: https://wh1isper-mini-leaderboard.hf.space/
+
+demo: https://th4wiw3hfz.app.youware.com/
