@@ -1,0 +1,52 @@
+site_name: mini-leaderboard
+repo_url: https://github.com/wh1isper/mini-leaderboard
+site_url: https://wh1isper.github.io/mini-leaderboard
+site_description: simple learder board with many projects
+site_author: Wh1isper
+edit_uri: edit/main/docs/
+repo_name: wh1isper/mini-leaderboard
+copyright: Maintained by <a href="https://wh1isper.com">wh1isper</a>.
+
+nav:
+  - Home: index.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["mini_leaderboard"]
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/wh1isper/mini-leaderboard
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/mini-leaderboard
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
