@@ -15,7 +15,7 @@ router = APIRouter(
 )
 
 
-@router.post("/add")
+@router.post("/add", status_code=status.HTTP_201_CREATED)
 async def add_leaderboard(
     params: AddLeaderboardParams,
     leaderboard_controller: LeaderboardController = Depends(get_leaderboard_controller),
@@ -26,6 +26,7 @@ async def add_leaderboard(
 
 @router.get("/list")
 async def get_leaderboard(
+    project_id: str = Query(..., description="Project identifier"),
     cursor: str | None = Query(
         default=None,
         description="Cursor for pagination, use `next_cursor` from previous response",
@@ -33,4 +34,4 @@ async def get_leaderboard(
     page_size: int = Query(default=100, description="Page size for pagination"),
     leaderboard_controller: LeaderboardController = Depends(get_leaderboard_controller),
 ) -> LeaderboardResponse:
-    return await leaderboard_controller.get_leaderboard(cursor, page_size)
+    return await leaderboard_controller.get_leaderboard(project_id, cursor, page_size)

@@ -6,7 +6,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from mini_leaderboard.dbutils import get_db_session
 from mini_leaderboard.orm import Leaderboard
-from mini_leaderboard.routers.api.params import AddLeaderboardParams, LeaderboardResponse, OneLeaderboard
+from mini_leaderboard.routers.api.params import (
+    AddLeaderboardParams,
+    LeaderboardResponse,
+    OneLeaderboard,
+)
 
 
 def get_leaderboard_controller(
@@ -26,10 +30,10 @@ class LeaderboardController:
         await self.db.commit()
         return None
 
-    async def get_leaderboard(self, cursor: str | None, page_size: int) -> LeaderboardResponse:
+    async def get_leaderboard(self, project_id: str, cursor: str | None, page_size: int) -> LeaderboardResponse:
         """cursor is leaderboard_id of Leaderboard"""
         # Create a query to select leaderboard records
-        query = select(Leaderboard)
+        query = select(Leaderboard).where(Leaderboard.project_id == project_id)
 
         # If cursor is provided, filter to get records after the cursor
         if cursor:
@@ -65,7 +69,10 @@ class LeaderboardController:
         # Convert to OneLeaderboard objects
         data = [
             OneLeaderboard(
-                leaderboard_id=record.leaderboard_id, name=record.name, score=record.score, created_at=record.created_at
+                leaderboard_id=record.leaderboard_id,
+                name=record.name,
+                score=record.score,
+                created_at=record.created_at,
             )
             for record in records
         ]
