@@ -2,6 +2,8 @@
 FROM python:3.12-slim
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
+RUN apt-get update && apt-get install -y tini && rm -rf /var/lib/apt/lists/*
+
 RUN useradd -m -u 1000 user
 
 # Switch to the "user" user
