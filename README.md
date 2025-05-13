@@ -20,4 +20,5 @@ simple learder board with many projects
 
 Try it on: https://wh1isper-mini-leaderboard.hf.space/
 
-demo: https://th4wiw3hfz.app.youware.com/
+- demo leaderboard: https://th4wiw3hfz.app.youware.com/
+- demo messageboard: https://tc61kg62zc.app.youware.com/
