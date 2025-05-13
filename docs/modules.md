@@ -1,1 +1,0 @@
-::: mini_leaderboard.foo

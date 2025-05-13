@@ -16,9 +16,9 @@ def test_add_leaderboard(client, project_id):
     assert response.status_code == 201
 
 
-def test_get_leaderboard_empty(client):
+def test_get_leaderboard_empty(client, project_id):
     """Test getting an empty leaderboard."""
-    response = client.get("/api/v1/leaderboard/list")
+    response = client.get("/api/v1/leaderboard/list", params={"project_id": project_id})
     assert response.status_code == 200
     data = response.json()
     assert "data" in data
@@ -50,7 +50,7 @@ def test_get_leaderboard(client, project_id):
     assert scores == sorted(scores, reverse=True)
 
 
-def test_get_leaderboard_pagination(client):
+def test_get_leaderboard_pagination(client, project_id):
     """Test leaderboard pagination with cursor."""
     # Create exactly 150 entries (more than the default page size of 100)
     entries = []
