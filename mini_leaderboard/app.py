@@ -6,13 +6,16 @@ from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from mini_leaderboard.config import get_config
+from mini_leaderboard.dbutils import init_engine
 
 from .routers.api.v1 import routers as v1_routers
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    yield
+    config = get_config()
+    async with init_engine(config):
+        yield
 
 
 app = FastAPI(lifespan=lifespan)
