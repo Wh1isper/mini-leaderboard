@@ -43,8 +43,13 @@ class LeaderboardController:
             cursor_record = cursor_result.scalar_one_or_none()
 
             if cursor_record:
-                # Filter to get records after this one (using id_ for stable ordering)
-                query = query.where(Leaderboard.id_ > cursor_record.id_)
+                # Filter to get records with either:
+                # 1. Lower score than the cursor record, or
+                # 2. Same score but higher id_ (for stable ordering within same score)
+                query = query.where(
+                    (Leaderboard.score < cursor_record.score)
+                    | ((Leaderboard.score == cursor_record.score) & (Leaderboard.id_ > cursor_record.id_))
+                )
 
         # Order by score (descending) and id_ (for stable ordering)
         query = query.order_by(Leaderboard.score.desc(), Leaderboard.id_)
