@@ -10,7 +10,6 @@ app_port: 8909
 
 # mini-leaderboard
 
-[![Release](https://img.shields.io/github/v/release/wh1isper/mini-leaderboard)](https://img.shields.io/github/v/release/wh1isper/mini-leaderboard)
 [![Build status](https://img.shields.io/github/actions/workflow/status/wh1isper/mini-leaderboard/main.yml?branch=main)](https://github.com/wh1isper/mini-leaderboard/actions/workflows/main.yml?query=branch%3Amain)
 [![codecov](https://codecov.io/gh/wh1isper/mini-leaderboard/branch/main/graph/badge.svg)](https://codecov.io/gh/wh1isper/mini-leaderboard)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/wh1isper/mini-leaderboard)](https://img.shields.io/github/commit-activity/m/wh1isper/mini-leaderboard)
@@ -23,7 +22,7 @@ Try it on: https://wh1isper-mini-leaderboard.hf.space/
 - demo leaderboard: https://th4wiw3hfz.app.youware.com/
 - demo messageboard: https://tc61kg62zc.app.youware.com/
 
-## How to prompt:
+## How to prompt
 
 - Tell AI using API in https://wh1isper-mini-leaderboard.hf.space/openapi.json, If AI cannot access url, copy the content
 - Use a `project_id` you like, e.g. `example-project`, this will allow you to get a leaderboard and messageboard for a specific project.
