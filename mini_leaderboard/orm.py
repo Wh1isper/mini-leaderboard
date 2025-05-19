@@ -28,7 +28,7 @@ class Leaderboard(Base):
 
 
 class MessageBoard(Base):
-    __tablename__ = "message_board"
+    __tablename__ = "messageboard"
 
     id_ = Column(Integer, autoincrement=True, primary_key=True)
 
@@ -42,6 +42,22 @@ class MessageBoard(Base):
     project_id = Column(Text)
     name = Column(Text)
     message = Column(Text)
+
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+
+class Form(Base):
+    __tablename__ = "form"
+
+    id_ = Column(Integer, autoincrement=True, primary_key=True)
+    project_id = Column(Text)
+
+    # username, email, project link and social post link
+    username = Column(Text, nullable=True)
+    email = Column(Text, nullable=True)
+    project_link = Column(Text, nullable=True)
+    social_post_link = Column(Text, nullable=True)
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())

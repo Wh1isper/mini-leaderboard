@@ -51,3 +51,20 @@ class AddMessageboardParams(BaseModel):
     name: str = Field(..., description="Name of the player or entity")
     message: str = Field(..., description="Message value for the messageboard entry")
     project_id: str = Field(..., description="Project identifier the messageboard entry belongs to")
+
+
+class AddFormParams(BaseModel):
+    """Schema for adding a new form entry"""
+
+    project_id: str = Field(..., description="Project identifier the form entry belongs to")
+
+    username: str = Field(..., description="Username of the entity")
+    email: str = Field(..., description="Email of the entity")
+    project_link: str = Field(..., description="Project link of the entity")
+    social_post_link: str = Field(..., description="Social post link of the entity")
+
+
+class CountFormResponse(BaseModel):
+    """Schema for counting form entries"""
+
+    count: int = Field(..., description="Count of form entries")

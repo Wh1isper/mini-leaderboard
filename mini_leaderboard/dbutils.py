@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import os
 from contextlib import asynccontextmanager, contextmanager
-from functools import partial
 
 try:
     from functools import cache
@@ -21,10 +20,8 @@ import alembic.command
 import alembic.config
 from alembic.script import ScriptDirectory
 from fastapi import Depends
-from sqlalchemy import create_engine as sqlalchemy_create_engine
-from sqlalchemy import delete, exc, inspect, text
-from sqlalchemy.ext.asyncio import async_sessionmaker
-from sqlalchemy.ext.asyncio import create_async_engine as sqlalchemy_create_async_engine
+from sqlalchemy import create_engine, delete, exc, inspect, text
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlalchemy.orm import Session
 
 from mini_leaderboard.config import Config, get_config
@@ -38,17 +35,6 @@ _here = os.path.abspath(os.path.dirname(__file__))
 
 ALEMBIC_INI_TEMPLATE_PATH = os.path.join(_here, "alembic.ini")
 ALEMBIC_DIR = os.path.join(_here, "alembic")
-
-
-create_async_engine = partial(
-    sqlalchemy_create_async_engine,
-    connect_args={"options": os.getenv("DB_CONNECT_ARGS", "-c search_path=public")},
-)
-
-create_engine = partial(
-    sqlalchemy_create_engine,
-    connect_args={"options": os.getenv("DB_CONNECT_ARGS", "-c search_path=public")},
-)
 
 
 def write_alembic_ini(alembic_ini="alembic.ini", db_url="sqlite:///mini_leaderboard.sqlite"):
@@ -142,7 +128,9 @@ def _clear_revision(engine, url):
         # Remove *.py from old_versions
         for old_versions_file in glob(old_versions_files.as_posix()):
             os.remove(old_versions_file)
+        logger.info(f"Removed old versions: {old_versions_files}")
 
+        logger.info(f"Creating new revision: {ini}")
         alembic.command.revision(config=cfg, autogenerate=True, message="init")
 
 
