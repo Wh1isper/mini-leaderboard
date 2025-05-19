@@ -23,7 +23,7 @@ def init():
     Init and upgrade the database.
     """
     config = get_config()
-    upgrade_in_place(config.get_db_url())
+    upgrade_in_place(config.get_sync_db_url())
 
 
 @click.group()
