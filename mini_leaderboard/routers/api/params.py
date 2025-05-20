@@ -58,7 +58,7 @@ class AddFormParams(BaseModel):
 
     project_id: str = Field(..., description="Project identifier the form entry belongs to")
 
-    username: str = Field(..., description="Username of the entity")
+    username: str | None = Field(None, description="Username of the entity")
     email: str = Field(..., description="Email of the entity")
     project_link: str = Field(..., description="Project link of the entity")
     social_post_link: str = Field(..., description="Social post link of the entity")
