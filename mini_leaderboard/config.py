@@ -41,7 +41,7 @@ class Config(BaseModel):
             .replace("postgresql+psycopg2://", "")
             .replace("postgresql+psycopg://", "")
         )
-        return f"postgresql+psycopg://{db_url}"
+        return f"postgresql+asyncpg://{db_url}"
 
     def get_sync_db_url(
         self,

@@ -27,7 +27,8 @@ dependencies = [
     "python-dotenv>=1.1.0",
     "sqlalchemy[asyncio]>=2.0.40",
     "uvicorn[standard]>=0.34.2",
-    "psycopg2-binary"
+    "psycopg2-binary",
+    "asyncpg",
 ]
 
 [project.urls]
@@ -125,7 +126,7 @@ ignore = [
 "mini_leaderboard/config.py" = ["E402"]
 
 [tool.deptry.per_rule_ignores]
-DEP002 = ["httpx", "psycopg", "psycopg2-binary"]
+DEP002 = ["httpx", "psycopg", "psycopg2-binary", "asyncpg"]
 
 [tool.ruff.format]
 preview = true

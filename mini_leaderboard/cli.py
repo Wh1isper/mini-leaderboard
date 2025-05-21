@@ -45,7 +45,7 @@ def drop(yes):
     click.echo("Dropping all data...")
 
     config = get_config()
-    drop_all_data(config.get_db_url())
+    drop_all_data(config.get_sync_db_url())
 
 
 cli.add_command(start)
