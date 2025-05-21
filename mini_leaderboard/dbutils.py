@@ -176,7 +176,6 @@ def get_engine(config: Config):
     logger.info("Creating database engine")
     return create_async_engine(
         config.get_db_url(),
-        connect_args={"statement_cache_size": 0},  # Disable statement caching
         pool_pre_ping=True,  # Verify connections before using them
     )
 
