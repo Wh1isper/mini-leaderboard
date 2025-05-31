@@ -177,9 +177,9 @@ def get_engine(config: Config):
     return create_async_engine(
         config.get_db_url(),
         pool_pre_ping=True,  # Verify connections before using them
-        pool_size=2,
+        pool_size=5,
         max_overflow=5,
-        pool_recycle=3600,
+        pool_recycle=60,
     )
 
 
