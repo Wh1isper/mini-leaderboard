@@ -1,6 +1,6 @@
 import uuid
 
-from sqlalchemy import Column, DateTime, Integer, Text, func
+from sqlalchemy import Column, DateTime, Integer, Text, UniqueConstraint, func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import declarative_base  # noqa: F811
 
@@ -61,3 +61,18 @@ class Form(Base):
 
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+
+class Vote(Base):
+    __tablename__ = "vote"
+
+    id_ = Column(Integer, autoincrement=True, primary_key=True)
+    project_id = Column(Text, nullable=False, index=True)
+    item_id = Column(Text, nullable=False, index=True)
+    vote_count = Column(Integer, default=1)
+
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+    # Composite unique constraint to ensure one vote record per project_id + item_id combination
+    __table_args__ = (UniqueConstraint("project_id", "item_id", name="uix_project_item"),)

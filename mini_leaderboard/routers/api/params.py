@@ -68,3 +68,30 @@ class CountFormResponse(BaseModel):
     """Schema for counting form entries"""
 
     count: int = Field(..., description="Count of form entries")
+
+
+class OneVote(BaseModel):
+    """Schema for a single vote entry"""
+
+    project_id: str = Field(..., description="Project identifier")
+    item_id: str = Field(..., description="Item identifier")
+    vote_count: int = Field(..., description="Vote count for the item")
+
+
+class VoteListResponse(BaseModel):
+    """Schema for vote list response"""
+
+    data: list[OneVote] = Field(..., description="List of vote entries")
+
+
+class VoteCountResponse(BaseModel):
+    """Schema for single vote count response"""
+
+    vote_count: int = Field(..., description="Vote count for the item")
+
+
+class AddVoteParams(BaseModel):
+    """Schema for adding a vote"""
+
+    project_id: str = Field(..., description="Project identifier")
+    item_id: str = Field(..., description="Item identifier")
